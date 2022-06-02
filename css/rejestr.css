@@ -73,7 +73,7 @@ body {
     background-color: #74b9ff;
     padding: 10px;
     margin-top: 80px;
-    height: 900px;
+    height: 850px;
     width: 750px;
     font-size: 20px;
     border-radius: 10px;
@@ -132,9 +132,6 @@ form {
 #submit:hover {
     background-color: #2ecc71;
 }
-
-/* rgba(38, 222, 129,1.0) */
-/* rgba(120, 224, 143, 1) */
 
 .info {
     width: 60%;
