@@ -27,7 +27,6 @@
         <div id="container">
             <span class="bigtitle">Wyświetlanie danych pacjentów</span>
             <div style="height: 15px;"></div>
-
             <form method="POST">
                 <input type="submit" name="Wyswietl_all" value="Wyświetl wszystkich pacjentów">
             </form>

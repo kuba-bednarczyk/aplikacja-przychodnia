@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <title>Przychodnia "Zdrowie"</title>
+    <title>Logowanie</title>
     <meta charset="utf-8">
     <link rel="shortcut icon" href="../logo/logo.png" type="image/x-icon" />
     <meta name="description" content="Najlepsi w branży projektowej!" />
@@ -14,6 +14,7 @@
     <meta name="reply-to" content="wg833@zs1.lublin.eu" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/login.css">
 </head>
     <body>
         <div class="menu">
@@ -28,16 +29,15 @@
             </header>
         </div>    
         <div id="content">
-            <span class="bigtitle">Logowanie do Panelu</span>
-            <div style="height: 15px;"></div>
+            <span class="bigtitle">Logowanie</span>
             <div id="form">
                 <form method="post">
-                    <label><b>Login: </b><input type="text" name="login" maxLength="15" placeholder="lekarz1"></label><br>
-                    <label><b>Hasło: <b><input type="password" name="haslo" maxLength="50" placeholder="Password"></label>
-                        <br>
+                    <label>Login: </label>
+                    <input type="text" name="login" maxLength="15" placeholder="lekarz1">
+                    <label>Hasło: </label>
+                    <input type="password" name="haslo" maxLength="50" placeholder="Password">
                     <input type="submit" name="zaloguj" value="Zaloguj">
                 </form>
-            </div>
                 <?php
                     if (isset($_POST['zaloguj'])){
                         $db = mysqli_connect("localhost", "root", "", "przychodnia");
@@ -51,14 +51,15 @@
                         
                         if (mysqli_num_rows($query)>0){
                             $_SESSION['zalogowany'] = $login;
-                            header("Location: ./lekarze/index_dodaj.php");
+                            header("Location: ./adm.php");
                         }else{
                             echo "<br>";
-                            echo "<b>Błędny login lub hasło!</b>";
+                            echo "<b class='info'>Błędny login lub hasło!</b>";
                         }
                         mysqli_close($db);
                     }
                 ?>
+            </div>
         </div>
     </body>
 </html>
