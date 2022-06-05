@@ -40,55 +40,63 @@
                     <label>Nr. domu: </label>
                     <input type="text" name="nr_domu" required><br>
                     <label>Nr. mieszkania: </label>
-                    <input type="text" name="nr_mieszkania" required> <br>
+                    <input type="text" name="nr_mieszkania" placeholder="wpisz - jeżeli nie posiadasz"required> <br>
                     <label>Telefon: </label>
                     <input type="text" name="telefon" maxlength="9" required><br>
                 </div>
 
                 <input type="submit" value="Zarejestruj Się!" name="zarejestruj" id="submit">
             </form>
-            <!-- W PHP -->
-            <!-- wyświetla informacje "Udało ci sie zarejestrować!" -->
-            <!-- jeśli jest błąd to: "Błąd przy rejestracji"  w <p> -->
-            <div class="info">
-                <p>Udało ci się zarejestrować! Twoje id to: 1</p>
-            </div>
+            <?php
+                if (isset($_POST['zarejestruj'])){
+                    $db = mysqli_connect("localhost", "root", "", "przychodnia");
+
+                    $imie = mysqli_escape_string($db, $_POST['imie']);
+                    $nazwisko = mysqli_escape_string($db, $_POST['nazwisko']);
+                    $pesel = mysqli_escape_string($db, $_POST['pesel']);
+                    $miejscowosc = mysqli_escape_string($db, $_POST['miejscowosc']);
+                    $kod_pocztowy = mysqli_escape_string($db, $_POST['pocztowy']);
+                    $ulica = mysqli_escape_string($db, $_POST['ulica']);
+                    $nr_domu = mysqli_escape_string($db, $_POST['nr_domu']);
+                    $nr_mieszkania = mysqli_escape_string($db, $_POST['nr_mieszkania']);
+                    $telefon = mysqli_escape_string($db, $_POST['telefon']);
+
+                    if($db){
+                        $sql = "INSERT INTO pacjent VALUES (null, '$imie', '$nazwisko', '$pesel', '$miejscowosc', '$kod_pocztowy', '$ulica', '$nr_domu', '$nr_mieszkania', '$telefon')";
+
+                        $query = mysqli_query($db, $sql);
+
+                        if (mysqli_affected_rows($db)>0){
+                            echo "
+                            <div class='info'>
+                                <p>Pomyślnie zarejestrowanao!</p>
+                            </div>
+                            ";
+                        } else {
+                            echo "
+                            <div class='info'>
+                                <p>Błąd zapisu danych!</p>
+                            </div>
+                            ";
+                        }
+
+                    } else {
+                        echo "
+                        <div class='info'>
+                            <p>Błąd połączenia z bazą danych</p>
+                        </div>
+                        ";
+                    }
+
+                    mysqli_close($db);
+                }
+            ?>
+
+            <!-- <div class='info'>
+                <p>Błąd przy rejestracji!</p>
+            </div> -->
         </div>
     </div>
 
 </body>
 </html>
-
-
-<!-- zostawiam phpy może sie przydadzą xD ale trzeba od nowa chyba zrobić -->
-<?php
-            // $db = mysqli_connect("localhost", "root", "", "przychodnia");
-            // $sql = "SELECT * from zespol_pracownikow";
-            // if(mysqli_connect_errno()==0){
-            //     $query = mysqli_query($db, $sql);
-            //     while($wiersz=mysqli_fetch_array($query)){
-            //         $id = $wiersz['ID_zespolu'];
-            //         echo "<option value='$id'>$id</option>";
-            //     }
-
-            //     mysqli_close($db);
-            // }
-        ?>
-
-<?php
-        // if(isset($_POST["submit"])){
-        //     $imie = $_POST['Imie'];
-        //     $nazwisko = $_POST['Nazwisko'];
-        //     $PESEL = $_POST['Pesel'];
-        //     $miejscowosc = $_POST['Miejscowosc'];
-        //     $kod_pocztowy = $_POST['Kod_pocztowy'];
-        //     $ulica = $_POST['Ulica'];
-        //     $nr_domu = $_POST['Nr_domu'];
-        //     $nr_telefonu = $_POST['Nr_telefonu'];
-        //     $db = mysqli_connect("localhost", "root", "", "projekt");
-        //     $sql = "INSERT INTO pracownicy VALUES (null, '$zespol', '$PESEL', '$imie', '$nazwisko', '$miejscowosc', '$ulica', '$kod_pocztowy', '$nr_domu', '$login', '$haslo', '$nr_telefonu', '$administrator')";
-        //         $query = mysqli_query($db, $sql);
-
-        //     mysqli_close($db);
-        // }
-    ?>
