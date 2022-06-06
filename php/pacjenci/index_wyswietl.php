@@ -11,28 +11,49 @@
         <meta name="reply-to" content="wg833@zs1.lublin.eu" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/show.css">
+
         <style>
-            table, td
-            {
-                font-size: 15px;
-                border: 1px solid #000;
-                border-collapse: collapse;
-                padding: 4px;
-                text-align: left;
-                margin: auto;
-            }
+
+            .alert {
+        width: 60%;
+        height: 70px;
+        border: dotted 3px #fff;
+        margin: 20px auto;
+    }
+
+    .alert p {
+        text-align: center;
+        line-height: 65px;
+        color: #fff;
+        font-size: 16px;
+    }
+    
+    .box1, .box2 {
+        width: 80%
+    }
+
+    table, td {
+        padding: 5px;
+    }
+
+
+    @media (max-width: 1100px) {
+    .box1, .box2 {
+        width: 95%
+    }
+    }
         </style>
     </head>
     <body>
-        
+    <a href="../adm.php" class="goback">Powrót</a>
         <div id="container">
-            <span class="bigtitle">Wyświetlanie danych pacjentów</span>
-            <div style="height: 15px;"></div>
-            <form method="POST">
-                <input type="submit" name="Wyswietl_all" value="Wyświetl wszystkich pacjentów">
-            </form>
-            <br><br>
-            <?php
+            <div class="box1">
+                <h1 class="bigtitle">Wyświetlanie danych pacjentów</h1>
+                <form method="POST">
+                    <input type="submit" name="Wyswietl_all" value="Wyświetl wszystkich pacjentów">
+                </form>
+                <?php
                 if (isset($_POST['Wyswietl_all'])){
                     $db = mysqli_connect("localhost", "root", "", "przychodnia");
                     
@@ -71,21 +92,24 @@
                         }
                         echo "</table>";
                     }else{
-                        echo "<b>Błąd połączenia z bazą danych<b>";
+                        echo "
+                        <div class='alert'>
+                            <p>Błąd połączenia z bazą danych</p>
+                        </div>
+                        ";
                     }
                     mysqli_close($db);
                 }
             ?>
-            <br><br>
-            <div id="form2">
+            </div>
+            
+            <div class="box2">
                 <span class="bigtitle">Wyszukiwanie danych pacjentów</span>
                 <h3><b>Wpisz nazwisko pacjenta, którego chcesz wyszukać:</b></h3>
                 <form method="POST">
                     <input type="text" name="szukajInput" maxlength="20" placeholder="Kowalski">
-                    <input type="submit" name="szukaj" value="Szukaj"><br><br>
-                </form>
-            </div>
-            <?php
+                    <input type="submit" name="szukaj" value="Szukaj">
+                    <?php
                 if(isset($_POST['szukaj'])){
 
                     $db = mysqli_connect("localhost", "root", "", "przychodnia");
@@ -101,6 +125,7 @@
                             echo "<br>";
                             echo "<b>Wpisz nazwisko pacjenta.</b>";
                         }else if (mysqli_num_rows($query_search) == 0){
+                            echo "<br>";
                             echo "<b>Taki pacjent nie istnieje.</b>";
                         }else {
                             echo "<br>";
@@ -135,11 +160,18 @@
                         echo "</table>";
                         }
                     }else{
-                        echo "<b>Błąd połączenia z bazą danych</b>";
+                        echo "
+                        <div class='alert'>
+                            <p>Błąd połączenia z bazą danych</p>
+                        </div>
+                        ";
                     }
                     mysqli_close($db);
                 }
             ?>
+                </form>
+            </div>
+            
         </div>
     </body>
 </html>

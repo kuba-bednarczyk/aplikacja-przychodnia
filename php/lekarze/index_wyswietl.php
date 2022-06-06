@@ -5,6 +5,7 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="../../css/show.css">
         <link rel="stylesheet" href="../../css/reset.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="../logo/logo.png" type="image/x-icon" />
         <meta name="description" content="Najlepsi w branży projektowej!" />
         <meta name="keywords" content="projekt" />
@@ -12,6 +13,21 @@
         <meta name="author" content="Wiktor Patajewicz" />
         <meta name="reply-to" content="wg833@zs1.lublin.eu" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <style>
+    .alert {
+        width: 60%;
+        height: 70px;
+        border: dotted 3px #fff;
+        margin: 20px auto;
+    }
+
+    .alert p {
+        text-align: center;
+        line-height: 65px;
+        color: #fff;
+        font-size: 16px;
+    }  
+        </style>
     </head>
     <body>
         <a href="../adm.php" class="goback">Powrót</a>
@@ -51,7 +67,11 @@
                                 }
                                 echo "</table>";
                             }else{
-                                echo "<b>Błąd połączenia z bazą danych<b>";
+                                echo "
+                                <div class='alert'>
+                                    <p>Błąd połączenia z bazą danych</p>
+                                </div>
+                                ";
                             }
                             mysqli_close($db);
                         }
@@ -103,11 +123,16 @@
                         echo "</table>";
                         }
                     }else{
-                        echo "<b>Błąd połączenia z bazą danych</b>";
+                        echo "
+                        <div class='alert'>
+                            <p>Błąd połączenia z bazą danych</p>
+                        </div>
+                        ";
                     }
                     mysqli_close($db);
                 }
             ?>
+
             </div>
 
         </div>

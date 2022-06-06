@@ -37,10 +37,10 @@
                     <input type="text" name="pocztowy" required><br>
                     <label>Ulica: </label>
                     <input type="text" name="ulica" required><br>
-                    <label>Nr. domu: </label>
+                    <label>Numer domu: </label>
                     <input type="text" name="nr_domu" required><br>
-                    <label>Nr. mieszkania: </label>
-                    <input type="text" name="nr_mieszkania" placeholder="wpisz - jeżeli nie posiadasz"required> <br>
+                    <label>Numer mieszkania: </label>
+                    <input type="text" name="nr_mieszkania" placeholder="wpisz '-' jeżeli nie posiadasz"required> <br>
                     <label>Telefon: </label>
                     <input type="text" name="telefon" maxlength="9" required><br>
                 </div>
