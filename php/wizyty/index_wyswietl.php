@@ -20,6 +20,17 @@
         <link rel="stylesheet" href="../../css/show.css">
 
         <style>
+    body {
+    width: 100%;
+    height: 100vh;
+}
+
+#container {
+    width: 100%;
+    height: 100%;
+}
+  
+
     .alert {
         width: 60%;
         height: 70px;

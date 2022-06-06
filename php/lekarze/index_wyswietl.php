@@ -20,6 +20,16 @@
         <meta name="reply-to" content="wg833@zs1.lublin.eu" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <style>
+    body {
+    width: 100%;
+    height: 100vh;
+}
+
+#container {
+    width: 100%;
+    height: 100%;
+}
+    
     .alert {
         width: 60%;
         height: 70px;
@@ -33,6 +43,7 @@
         color: #fff;
         font-size: 16px;
     }  
+
         </style>
     </head>
     <body>
