@@ -11,24 +11,53 @@
         <meta name="author" content="Wiktor Patajewicz" />
         <meta name="reply-to" content="wg833@zs1.lublin.eu" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/edit.css">
+        <style>
+        .alert {
+        width: 60%;
+        height: 70px;
+        border: dotted 3px #fff;
+        margin: 20px auto;
+    }
+
+    .alert p {
+        text-align: center;
+        line-height: 65px;
+        color: #fff;
+        font-size: 16px;
+    }  
+        </style>
     </head>
     <body>
-        
-        <div id="container">
-            <span class="bigtitle">Edytowanie danych pacjentów</span>
-            <div style="height: 15px;"></div>
+        <a href="../adm.php" class="goback">Powrót</a>
+        <div id="content">
+            <h1 class="bigtitle">Edytowanie danych pacjentów</h1>
             <div id="form1">
                 <form method="POST">
-                    <label><b>ID Pacjenta: </b><input type="text" name="id_pacjent" maxlength="11" placeholder="1" required></label><br>
-                    <label><b>Imię: </b><input type="text" name="imie" maxlength="30" placeholder="Jan"></label><br>
-                    <label><b>Nazwisko: </b><input type="text" name="nazwisko"   maxlength="30" placeholder="Kowalski"></label><br>
-                    <label><b>PESEL: </b><input type="text" name="pesel" maxlength="11" placeholder="00000000000"></label><br>
-                    <label><b>Miejscowość: </b><input type="text" name="miejscowosc"  maxlength="30" placeholder="Warszawa"></label><br>
-                    <label><b>Kod Pocztowy: </b><input type="text" name="pocztowy"  maxlength="6" placeholder="00-000" pattern="[0-9]{2}-[0-9]{3}"></label><br>
-                    <label><b>Ulica: </b><input type="text" name="ulica"  maxlength="30" placeholder="Szkolna"></label><br>
-                    <label><b>Numer domu: </b><input type="number" name="nr_domu"  maxlength="5" placeholder="1"></label><br>
-                    <label><b>Numer mieszkania: </b><input type="number" name="nr_mieszkania"  maxlength="5" placeholder="12"></label><br>
-                    <label><b>Telefon: </b><input type="tel" name="telefon"  maxlength="11" placeholder="000-000-000" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}"></label><br>
+                <div class="grid">
+                    <label><b>ID Pacjenta: </b></label>
+                    <input type="text" name="id_pacjent" maxlength="11" placeholder="1" required>
+                    <label><b>Imię: </b></label>
+                    <input type="text" name="imie" maxlength="30" placeholder="Jan">
+                    <label><b>Nazwisko: </b></label>
+                    <input type="text" name="nazwisko"   maxlength="30" placeholder="Kowalski">
+                    <label><b>PESEL: </b></label>
+                    <input type="text" name="pesel" maxlength="11" placeholder="00000000000">
+                    <label><b>Miejscowość: </b></label>
+                    <input type="text" name="miejscowosc"  maxlength="30" placeholder="Warszawa">
+                    <label><b>Kod Pocztowy: </b></label>
+                    <input type="text" name="pocztowy"  maxlength="6" placeholder="00-000" pattern="[0-9]{2}-[0-9]{3}">
+                    <label><b>Ulica: </b></label>
+                    <input type="text" name="ulica"  maxlength="30" placeholder="Szkolna">
+                    <label><b>Numer domu: </b></label>
+                    <input type="number" name="nr_domu"  maxlength="5" placeholder="1">
+                    <label><b>Numer mieszkania: </b></label>
+                    <input type="number" name="nr_mieszkania"  maxlength="5" placeholder="12">
+                    <label><b>Telefon: </b></label>
+                    <input type="tel" name="telefon"  maxlength="11" placeholder="000-000-000" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}">
+                    <input type="submit" name="Edytuj" value="Edytuj">  
+                </div>
                     <?php
                         if (isset($_POST['Edytuj'])){
                             $db = mysqli_connect("localhost", "root", "", "przychodnia");
@@ -111,7 +140,11 @@
 
                                         $zapytanie = "UPDATE pacjent SET imie ='$imie', nazwisko ='$nazwisko', pesel = '$pesel', miejscowosc = '$miejscowosc', pocztowy = '$pocztowy', ulica = '$ulica', nr_domu = '$nr_domu', nr_mieszkania = '$nr_mieszkania', telefon = '$telefon' WHERE id_pacjent = '$id_pacjent'";
                                         $query = mysqli_query($db, $zapytanie);
-                                        echo "<b>Dane pacjenta zostały zmodyfikowane</b>";
+                                        echo "
+                                        <div class='alert'>
+                                            <p>W bazie nie ma pacjenta o podanym ID</p>
+                                        </div>
+                                        ";
                                     } 
                                 }  
                                 if ($i == 0){
@@ -122,7 +155,7 @@
                             }
                         }
                     ?>
-                    <br><br><input type="submit" name="Edytuj" value="Edytuj">     
+                    
                 </form>
             </div>
         </div>

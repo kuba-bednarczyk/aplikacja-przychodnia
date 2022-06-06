@@ -91,7 +91,6 @@
                     mysqli_close($db);
                 }
             ?>
-
             <!-- <div class='info'>
                 <p>Błąd przy rejestracji!</p>
             </div> -->

@@ -10,6 +10,7 @@
         <meta name="author" content="Wiktor Patajewicz" />
         <meta name="reply-to" content="wg833@zs1.lublin.eu" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <link rel="stylesheet" href="../../css/reset.css">
         <style>
             table, td
             {
