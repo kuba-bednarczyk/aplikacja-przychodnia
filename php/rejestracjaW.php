@@ -38,16 +38,18 @@
     if(isset($_POST['pesel'])) {
         $db = mysqli_connect("localhost", "root", "", "przychodnia");
         $peselInput = $_POST['peselInput'];
-
-        $query = mysqli_query($db, "SELECT id_pacjent FROM pacjent WHERE pesel = $peselInput");
-
         if (empty($peselInput)) {
             echo "
             <div class='info'>
                 <p>Musisz wpisać numer PESEL!</p>
             </div>                       
             ";
-        } else if (mysqli_num_rows($query) == 0) {
+            $peselInput = 0;
+        } // tu dałam ifa przed bo jak ktos nic nie wpisał to pusta zmienna sie przekzaywała do zapytania i wywalało błąd bo zły typ danych pewnie
+
+        $query = mysqli_query($db, "SELECT id_pacjent FROM pacjent WHERE pesel = $peselInput");
+
+        if (mysqli_num_rows($query) == 0) {
             echo "
             <div class='info'>
                 <p>Nie znaleziono takiego numeru PESEL</p>
